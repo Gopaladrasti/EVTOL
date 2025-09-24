@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auth - Flight Booking</title>
+
+  <!-- Google Fonts & Material Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #f5f5f5;
+      min-height: 100vh;
+      padding: 40px 20px;
+       display: flex;
+      justify-content: center;
+      align-items: center;
+       
+    }
+
+    .auth-container {
+     background: rgba(255, 255, 255, 0.05);
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 420px;
+      border: 2px solid rgba
+    }
+
+    .auth-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .auth-header h2 {
+      color: #0077ff;
+      margin-bottom: 10px;
+    }
+
+    .auth-toggle {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .auth-toggle button {
+      background: none;
+      border: none;
+      font-size: 16px;
+      padding: 10px 20px;
+      cursor: pointer;
+      color: #333;
+      border-bottom: 2px solid transparent;
+    }
+
+    .auth-toggle button.active {
+      color: #0077ff;
+      font-weight: bold;
+      border-color: #0077ff;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    .form-group input:focus {
+      border-color: #0077ff;
+      outline: none;
+    }
+
+    .form-group .material-icons {
+      vertical-align: middle;
+      margin-right: 6px;
+      color: #0077ff;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background: #0077ff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: #005ecc;
+    }
+
+    .auth-footer {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .auth-footer a {
+      color: #0077ff;
+      text-decoration: none;
+    }
+
+    .auth-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      .auth-container {
+        margin: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-container">
+    <div class="auth-header">
+      <h2 id="form-title">Login to Your Account</h2>
+    </div>
+
+    <div class="auth-toggle">
+      <button id="login-tab" class="active" onclick="showForm('login')">Login</button>
+      <button id="signup-tab" onclick="showForm('signup')">Sign Up</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label for="login-email"><span class="material-icons">email</span>Email</label>
+        <input type="email" id="login-email" name="email" placeholder="you@example.com" required />
+      </div>
+
+      <div class="form-group">
+        <label for="login-password"><span class="material-icons">lock</span>Password</label>
+        <input type="password" id="login-password" name="password" placeholder="Enter your password" required />
+      </div>
+
+      <button type="submit" class="submit-btn">Login</button>
+      <div class="auth-footer">
+        Forgot your password? <a href="#">Reset</a>
+      </div>
+    </form>
+
+    <!-- Sign Up Form -->
+    <form id="signup-form" class="hidden" onsubmit="handleSignup(event)">
+      <div class="form-group">
+        <label for="signup-name"><span class="material-icons">person</span>Full Name</label>
+        <input type="text" id="signup-name" name="name" placeholder="John Doe" required />
+      </div>
+
+      <div class="form-group">
+        <label for="signup-email"><span class="material-icons">email</span>Email</label>
+        <input type="email" id="signup-email" name="email" placeholder="you@example.com" required />
+      </div>
+
+      <div class="form-group">
+        <label for="signup-password"><span class="material-icons">lock</span>Password</label>
+        <input type="password" id="signup-password" name="password" placeholder="Create a password" required />
+      </div>
+
+      <div class="form-group">
+        <label for="signup-confirm"><span class="material-icons">lock</span>Confirm Password</label>
+        <input type="password" id="signup-confirm" name="confirm" placeholder="Repeat your password" required />
+      </div>
+
+      <button type="submit" class="submit-btn">Create Account</button>
+      <div class="auth-footer">
+        Already have an account? <a href="#" onclick="showForm('login')">Login</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function showForm(type) {
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+      const loginTab = document.getElementById('login-tab');
+      const signupTab = document.getElementById('signup-tab');
+      const formTitle = document.getElementById('form-title');
+
+      if (type === 'login') {
+        loginForm.classList.remove('hidden');
+        signupForm.classList.add('hidden');
+        loginTab.classList.add('active');
+        signupTab.classList.remove('active');
+        formTitle.textContent = 'Login to Your Account';
+      } else {
+        loginForm.classList.add('hidden');
+        signupForm.classList.remove('hidden');
+        loginTab.classList.remove('active');
+        signupTab.classList.add('active');
+        formTitle.textContent = 'Create a New Account';
+      }
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      // Replace with real validation or API call
+      if (email === "admin@example.com" && password === "admin") {
+        alert("Login successful!");
+        window.location.href = "index.html"; // Go to homepage
+      } else {
+        alert("Invalid credentials. Try again.");
+      }
+    }
+
+    function handleSignup(e) {
+      e.preventDefault();
+      const name = document.getElementById("signup-name").value;
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+      const confirm = document.getElementById("signup-confirm").value;
+
+      if (password !== confirm) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      alert(`Account created for ${name}!`);
+      showForm('login');
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkyLink eVTOL | Next-Gen Flight Experience</title>
+
+  <!-- Google Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+  
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #474c4c;
+      color: var(--light-text);
+      font-family: 'Roboto Condensed', sans-serif;
+      line-height: 1.6;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      background: rgba(39, 101, 245, 0.9);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+    }
+    header nav {
+      display: flex;
+      gap: 30px;
+    }
+    header nav a {
+      font-size: 1rem;
+      padding: 5px 0;
+      position: relative;
+    }
+    header nav a:hover::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    /* Hero / Banner */
+    .hero {
+      height: 90vh;
+      background: url('/public/src/hero.jpg') center/cover no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+    .hero-content {
+      position: relative;
+      max-width: 800px;
+      padding: 0 20px;
+      z-index: 10;
+    }
+    .hero-content h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #e0e0e0;
+    }
+    .hero-content .btn {
+      background: var(--primary-blue);
+      color: #fff;
+      padding: 14px 36px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .hero-content .btn:hover {
+      background: #0080cc;
+    }
+
+    section {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+    .feature-card {
+      background: black;
+      border-radius: 12px;
+      padding: 30px;
+      transition: transform var(--transition), background var(--transition);
+    }
+    .feature-card:hover {
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.07);
+    }
+    .feature-card .icon {
+      font-size: 48px;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .feature-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+    }
+    .feature-card p {
+      color: #d0d0d0;
+    }
+
+    .infotainment {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .infotainment img {
+      width: 100%;
+      max-width: 540px;
+      border-radius: 16px;
+    }
+    .infotainment .text {
+      flex: 1;
+    }
+    .infotainment .text h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+    .infotainment .text p {
+      margin-bottom: 20px;
+      color: #cccccc;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 60px;
+    }
+    .cta .btn-cta {
+      background: var(--accent);
+      color: #0a0f1b;
+      padding: 16px 48px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .cta .btn-cta:hover {
+      background: #00c4e0;
+    }
+
+    footer {
+      background: #0a0f1b;
+      color: #777;
+      padding: 60px 40px;
+    }
+    footer .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    footer h4 {
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    footer a {
+      color: #aaa;
+      display: block;
+      margin-bottom: 10px;
+    }
+    footer .legal {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 20px;
+      }
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .hero-content p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">SkyLink eVTOL</div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#infotainment">Infotainment</a>
+      <a href="#fleet">Fleet</a>
+      <a href="#contact">Contact</a>
+      <a href="./auth.html">Login</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Redefining Air Mobility for Tomorrow</h1>
+      <p>Experience seamless, luxurious, and efficient flight through our next‑gen eVTOL platform with integrated infotainment. Welcome to the skies of future.</p>
+      <button class="btn">Get Started</button>
+    </div>
+  </section>
+
+  <section id="features">
+    <h2 style="text-align:center; margin-bottom: 40px; color: var(--accent);">Core Features</h2>
+    <div class="features">
+      <div class="feature-card">
+        <div class="icon"><span class="material-icons">flight</span></div>
+        <h3>Vertical Takeoff & Landing</h3>
+        <p>No runway needed. Deploy from rooftop pads, vertiports or urban hubs.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><span class="material-icons">battery_full</span></div>
+        <h3>Eco‑Electric Power</h3>
+        <p>Zero-emission propulsion systems, silent operations, long-range battery modules.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><span class="material-icons">smart_display</span></div>
+        <h3>Smart Infotainment Hub</h3>
+        <p>Adaptive in-flight entertainment, real-time metrics, connectivity and more.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><span class="material-icons">security</span></div>
+        <h3>Redundant Safety Systems</h3>
+        <p>Multiple backups, real-time diagnostics, autonomous fallback protocols.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="infotainment">
+    <div class="infotainment">
+      <img src="/public/src/hero.jpg" alt="Infotainment Display">
+      <div class="text">
+        <h2>Immersive Infotainment Experience</h2>
+        <p>Passengers enjoy a fully integrated system: streaming, flight metrics, AR window displays, navigation, environment control and more — all controlled with simplicity and elegance.</p>
+        <p>Our UI is tailored for clarity and responsiveness, ensuring quick access to media, destination overview, real-time flight data, and connectivity options during transit.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="fleet">
+    <h2 style="text-align:center; margin-bottom: 40px; color: var(--accent);">Our Fleet</h2>
+    <!-- Could have sliders or cards of different eVTOL models here -->
+    <div class="features">
+      <div class="feature-card">
+        <img src="model-A.jpg" alt="Model A" style="width:100%; border-radius: 10px; margin-bottom: 15px;">
+        <h3>SkyLink A1</h3>
+        <p>2‑seat urban commuter with 150 km range, tilt‑wing design.</p>
+      </div>
+      <div class="feature-card">
+        <img src="model-B.jpg" alt="Model B" style="width:100%; border-radius: 10px; margin-bottom: 15px;">
+        <h3>SkyLink B4</h3>
+        <p>4-passenger luxury model with extended range and panoramic view.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 style="text-align:center; margin-bottom: 30px; color: var(--accent);">Get In Touch</h2>
+    <div style="max-width: 600px; margin: auto; text-align: center;">
+      <p>Interested in partnerships, ride bookings or tech integration? Reach out.</p>
+      <button class="btn-cta">Contact Us</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>About</h4>
+        <a href="#">Our Mission</a>
+        <a href="#">Team</a>
+        <a href="#">Careers</a>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="#">Charter Flights</a>
+        <a href="#">Infotainment Platform</a>
+        <a href="#">Maintenance & Support</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="#">Blog</a>
+        <a href="#">White Papers</a>
+        <a href="#">Technical Docs</a>
+      </div>
+      <div>
+        <h4>Follow Us</h4>
+        <a href="#">LinkedIn</a>
+        <a href="#">Twitter</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="legal">&copy; 2025 SkyLink eVTOL. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Smooth scroll on nav links
+    document.querySelectorAll('header nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          window.scrollTo({
+            top: targetEl.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
